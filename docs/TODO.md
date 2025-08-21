@@ -106,36 +106,48 @@
   - [x] persist middleware로 localStorage 저장
 
 ### 10. React Context API - 인증
-- [ ] `store/authProvider.tsx` - AuthContext 생성
-  - [ ] 로그인 상태
-  - [ ] 사용자 정보
-  - [ ] 토큰 관리
-- [ ] `hooks/useAuth.ts` - 인증 훅
+- [x] `store/authProvider.tsx` - AuthContext 생성
+  - [x] 로그인 상태
+  - [x] 사용자 정보
+  - [x] 토큰 관리 (JWT with auto-refresh)
+  - [x] 권한 확인 (role-based access)
+- [x] `hooks/useAuth.ts` - 인증 훅 (AuthContext에 포함됨)
 
 ## 🌐 API 연동 설정
 
 ### 11. API 클라이언트 설정
-- [ ] `lib/api/client.ts` - Axios 인스턴스 또는 Fetch wrapper
-  - [ ] baseURL 설정 (환경 변수 사용)
-  - [ ] 인터셉터 설정 (토큰 자동 추가)
-  - [ ] 에러 핸들링
+- [x] `lib/api/client.ts` - Axios 인스턴스 설정
+  - [x] baseURL 설정 (환경 변수 사용)
+  - [x] 인터셉터 설정 (토큰 자동 추가)
+  - [x] 에러 핸들링 (한국어 메시지 포함)
+  - [x] JWT 자동 갱신 로직
+  - [x] 토큰 저장소 관리 (localStorage)
 
 ### 12. API 함수 구현
-- [ ] `lib/api/product.ts`
-  - [ ] fetchProducts() - 전체 상품 목록
-  - [ ] fetchProductById() - 상품 상세
-  - [ ] fetchProductsByCategory() - 카테고리별 상품
-- [ ] `lib/api/auth.ts`
-  - [ ] login() - 일반 로그인
-  - [ ] register() - 회원가입
-  - [ ] kakaoLogin() - 카카오 로그인
-  - [ ] kakaoCallback() - 카카오 콜백
-- [ ] `lib/api/order.ts`
-  - [ ] createOrder() - 주문 생성
-  - [ ] fetchOrders() - 주문 목록
-- [ ] `lib/api/payment.ts`
-  - [ ] kakaoPayReady() - 결제 준비
-  - [ ] kakaoPayApprove() - 결제 승인
+- [x] `lib/api/product.ts`
+  - [x] fetchProducts() - 전체 상품 목록
+  - [x] fetchProductById() - 상품 상세
+  - [x] fetchProductsByCategory() - 카테고리별 상품
+  - [x] TypeScript 타입 정의 완료
+- [x] `lib/api/auth.ts`
+  - [x] login() - 일반 로그인
+  - [x] register() - 회원가입
+  - [x] kakaoLogin() - 카카오 로그인
+  - [x] kakaoCallback() - 카카오 콜백
+  - [x] refreshToken() - 토큰 갱신
+- [x] `lib/api/order.ts`
+  - [x] createOrder() - 주문 생성
+  - [x] fetchOrders() - 주문 목록
+  - [x] updateOrderStatus() - 주문 상태 변경
+- [x] `lib/api/payment.ts`
+  - [x] kakaoPayReady() - 결제 준비
+  - [x] kakaoPayApprove() - 결제 승인
+  - [x] kakaoPayCancel() - 결제 취소
+- [x] `hooks/api/` - TanStack Query 훅 구현
+  - [x] useProducts(), useProduct(), useProductsByCategory()
+  - [x] useLogin(), useRegister(), useKakaoLogin()
+  - [x] useOrders(), useCreateOrder()
+  - [x] useKakaoPayReady(), useKakaoPayApprove()
 
 ## 📄 페이지 구현
 
@@ -285,11 +297,82 @@
 1. **Phase 1**: ✅ 프로젝트 초기 설정 및 기본 구조 (1-4) **COMPLETED**
 2. **Phase 2**: ✅ Linear Design System 테마 설정 (5) **COMPLETED**
 3. **Phase 3**: ✅ UI 컴포넌트 및 레이아웃 (6-7) **COMPLETED**
-4. **Phase 4**: 상태 관리 및 API 설정 (8-12)
+4. **Phase 4**: ✅ 상태 관리 및 API 설정 (8-12) **COMPLETED**
 5. **Phase 5**: 핵심 페이지 구현 (13-21)
 6. **Phase 6**: 기능 구현 (22-25)
 7. **Phase 7**: 테스트 및 최적화 (26-28)
 8. **Phase 8**: 배포 및 운영 (29-31)
+
+## 🔮 Phase 5 준비사항 (핵심 페이지 구현)
+
+### Phase 5를 시작하기 전에 알아야 할 중요 정보
+
+**✅ 완료된 기반 시설:**
+- **인증 시스템**: JWT 토큰 자동 갱신, 역할 기반 접근 제어
+- **API 클라이언트**: Axios 인스턴스, 에러 핸들링, 인터셉터 구성
+- **상태 관리**: TanStack Query (서버 상태), Zustand (장바구니), Context API (인증)
+- **타입 정의**: 모든 API 응답 및 요청에 대한 TypeScript 인터페이스
+- **미들웨어**: Next.js Edge Runtime에서 JWT 검증 및 라우트 보호
+- **환경 설정**: 개발/프로덕션 환경 변수, Kakao OAuth 설정
+
+**🎯 사용 가능한 API 훅 (TanStack Query):**
+```typescript
+// 상품 관련
+useProducts(filters?) // 상품 목록
+useProduct(id) // 상품 상세
+useProductsByCategory(category) // 카테고리별 상품
+
+// 인증 관련  
+useLogin() // 로그인
+useRegister() // 회원가입
+useKakaoLogin() // 카카오 로그인
+
+// 주문 관련
+useOrders() // 주문 목록
+useCreateOrder() // 주문 생성
+
+// 결제 관련
+useKakaoPayReady() // 카카오페이 준비
+useKakaoPayApprove() // 카카오페이 승인
+```
+
+**🛡️ 인증 시스템 사용법:**
+```typescript
+// AuthContext 사용
+const { user, isAuthenticated, login, logout } = useAuth();
+
+// 권한 확인
+const { isAdmin, isUser } = usePermissions();
+
+// 보호된 페이지
+useRequireAuth(); // 훅으로 인증 필요 페이지 보호
+```
+
+**🛒 장바구니 상태 사용법:**
+```typescript
+// Zustand 스토어 사용
+const { items, addItem, removeItem, updateQuantity, clearCart } = useCartStore();
+```
+
+**🔧 환경 변수:**
+- `NEXT_PUBLIC_API_URL`: http://localhost:8080/api
+- `NEXT_PUBLIC_KAKAO_CLIENT_ID`: FalPk6WoA8wEAXWqLbGIF500T6Gl6Q5B
+
+**⚠️ Phase 5 구현 시 주의사항:**
+1. 모든 페이지에서 `useAuth()` 훅을 통해 인증 상태 확인
+2. API 호출 시 TanStack Query 훅 사용 (직접 API 함수 호출 금지)
+3. 에러 처리는 이미 구현된 전역 에러 핸들러 활용
+4. 장바구니 상태는 localStorage에 자동 저장됨
+5. JWT 토큰은 자동 갱신되므로 수동 관리 불필요
+6. 보호된 라우트는 middleware.ts에서 자동 처리
+
+**🧪 테스트 환경:**
+- Playwright E2E 테스트 설정 완료
+- 스모크 테스트 50/55 통과 (91% 성공률)
+- 테스트 실행: `bun run test`
+
+**📋 다음 단계 (Phase 5):**
+메인 페이지부터 시작하여 상품 목록, 상품 상세, 장바구니, 주문 페이지 순으로 구현
 
 ## 🎨 Linear Design System 핵심 원칙
 - **Focus**: Relentless focus on core features

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCartStore } from '@/store/cart-store';
+import { useCartStore } from '@/store/cartStore';
 
 export default function Home() {
   const { addItem, items, totalPrice, totalItems } = useCartStore();
