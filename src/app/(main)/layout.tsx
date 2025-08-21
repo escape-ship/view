@@ -1,3 +1,6 @@
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+
 export default function MainLayout({
   children,
 }: {
@@ -5,9 +8,11 @@ export default function MainLayout({
 }) {
   return (
     <div className="bg-background min-h-screen">
-      {/* TODO: Add Header component */}
-      <main className="mx-auto max-w-[1200px] px-6">{children}</main>
-      {/* TODO: Add Footer component */}
+      <Header />
+      <main className="mx-auto max-w-[1200px] px-8 py-8">
+        {children}
+      </main>
+      <Footer />
     </div>
   );
 }

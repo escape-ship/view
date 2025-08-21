@@ -57,35 +57,37 @@
 - [x] CSS 변수 설정 (Dark theme optimized)
 
 ### 6. shadcn/ui 컴포넌트 설치 및 커스터마이징
-- [ ] Button (`npx shadcn@latest add button`) - Linear 스타일 적용
-  - [ ] Primary: 배경 #141516, 텍스트 #F7F8F8, borderRadius 30px
-  - [ ] Secondary: 투명 배경, 텍스트 #8A8F98, borderRadius 8px
-  - [ ] Outline: 배경 #28282C, border #3E3E44, borderRadius 9999px
-- [ ] Card (`npx shadcn@latest add card`) - Linear 스타일 적용
-  - [ ] Default: 배경 rgba(40, 40, 40, 0.2), borderRadius 16px
-  - [ ] Elevated: 배경 #0F1011, borderRadius 30px
-- [ ] Input (`npx shadcn@latest add input`) - Linear 스타일
-- [ ] Table (`npx shadcn@latest add table`) - Linear 스타일
-- [ ] Form 관련 컴포넌트
-- [ ] Dialog/Modal - Linear overlay 스타일
-- [ ] Toast/Alert - Linear 색상 시스템
-- [ ] Dropdown Menu
-- [ ] Select
-- [ ] Skeleton (로딩 상태)
+- [x] Button (`bunx shadcn@latest add button`) - Linear 스타일 적용
+  - [x] Primary: 배경 #141516, 텍스트 #F7F8F8, borderRadius 30px
+  - [x] Secondary: 투명 배경, 텍스트 #8A8F98, borderRadius 8px
+  - [x] Outline: 배경 #28282C, border #3E3E44, borderRadius 9999px
+- [x] Card (`bunx shadcn@latest add card`) - Linear 스타일 적용
+  - [x] Default: 배경 rgba(40, 40, 40, 0.2), borderRadius 16px
+  - [x] Elevated: 배경 #0F1011, borderRadius 30px
+- [x] Input (`bunx shadcn@latest add input`) - Linear 스타일
+- [x] Table (`bunx shadcn@latest add table`) - Linear 스타일
+- [x] Form 관련 컴포넌트 (form, textarea, label, checkbox, radio-group)
+- [x] Dialog/Modal - Linear overlay 스타일 (dialog, alert-dialog)
+- [x] Toast/Alert - Linear 색상 시스템 (sonner, alert)
+- [x] Dropdown Menu (`bunx shadcn@latest add dropdown-menu`)
+- [x] Select (`bunx shadcn@latest add select`)
+- [x] Skeleton (로딩 상태) - Linear shimmer 애니메이션
+- [x] Badge (`bunx shadcn@latest add badge`) - Linear 스타일 적용
 
 ### 7. 레이아웃 컴포넌트
-- [ ] `components/layout/Header.tsx` - 네비게이션 바
-  - [ ] 높이 72px (Linear navigation height)
-  - [ ] 패딩 0 32px
-  - [ ] 배경색 #F7F8F8 또는 다크 모드
-  - [ ] 로고 (홈 링크)
-  - [ ] 상품 메뉴
-  - [ ] 커스텀 주문 메뉴
-  - [ ] 장바구니 아이콘 (수량 표시)
-  - [ ] 로그인/로그아웃/회원정보 버튼
-- [ ] `components/layout/Footer.tsx` - 푸터
-- [ ] `app/(main)/layout.tsx` - 메인 레이아웃 (max-width: 1200px)
-- [ ] `app/(auth)/layout.tsx` - 인증 레이아웃
+- [x] `components/layout/Header.tsx` - 네비게이션 바
+  - [x] 높이 72px (Linear navigation height)
+  - [x] 패딩 0 32px
+  - [x] 배경색 #F7F8F8 또는 다크 모드
+  - [x] 로고 (홈 링크)
+  - [x] 상품 메뉴 (드롭다운)
+  - [x] 커스텀 주문 메뉴
+  - [x] 장바구니 아이콘 (수량 표시)
+  - [x] 로그인/로그아웃/회원정보 버튼
+  - [x] 모바일 반응형 햄버거 메뉴
+- [x] `components/layout/Footer.tsx` - 푸터 (회사정보, 네비게이션, 뉴스레터)
+- [x] `app/(main)/layout.tsx` - 메인 레이아웃 (max-width: 1200px)
+- [x] `app/(auth)/layout.tsx` - 인증 레이아웃 (최소한의 스타일링)
 
 ## 💾 상태 관리 설정
 
@@ -281,8 +283,8 @@
 ## 🎯 Milestones
 
 1. **Phase 1**: ✅ 프로젝트 초기 설정 및 기본 구조 (1-4) **COMPLETED**
-2. **Phase 2**: Linear Design System 테마 설정 (5)
-3. **Phase 3**: UI 컴포넌트 및 레이아웃 (6-7)
+2. **Phase 2**: ✅ Linear Design System 테마 설정 (5) **COMPLETED**
+3. **Phase 3**: ✅ UI 컴포넌트 및 레이아웃 (6-7) **COMPLETED**
 4. **Phase 4**: 상태 관리 및 API 설정 (8-12)
 5. **Phase 5**: 핵심 페이지 구현 (13-21)
 6. **Phase 6**: 기능 구현 (22-25)

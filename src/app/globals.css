@@ -197,6 +197,16 @@
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
+}
+
+/* Linear Design System Animations */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
@@ -297,9 +307,10 @@ body {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-[rgba(255,255,255,0.1)];
+    outline-color: rgba(94, 106, 210, 0.5);
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#F7F8F8] text-[#08090A];
   }
 }

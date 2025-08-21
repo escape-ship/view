@@ -187,3 +187,4 @@ The project uses comprehensive E2E testing with Playwright:
 - TanStack Query configured for optimal caching and stale-while-revalidate patterns
 - Zustand for efficient cart state management with selective subscriptions
 - Inter font with optimized weight loading (400, 500, 600)
+- please use context7 when doing tasks about tailwind, zustand, axios, shadcn/ui, next.js, tanstack, react context API.

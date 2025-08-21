@@ -94,34 +94,258 @@
 
 ### **ProductService**
 
-* **상품 정보 (Product)**  
-  * id: string  
-  * name: string  
-  * category: string  
-  * price: int64  
-  * image\_url: string  
-  * description: string  
-  * created\_at: string  
-  * updated\_at: string  
-  * options\_json: string  
-* **전체 상품 목록 조회:** GET /products  
-* **상품 ID로 조회:** GET /products/{id}  
-* **상품 추가:** POST /products
+#### **상품 정보 (Product)**
+```typescript
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  price: number; // int64
+  image_url: string;
+  description: string;
+  created_at: string;
+  updated_at: string;
+  options_json: string;
+}
+```
+
+#### **전체 상품 목록 조회**
+* **Endpoint:** `GET /products`
+* **Request:** 없음
+* **Response:**
+```typescript
+interface GetProductsResponse {
+  products: Product[];
+}
+```
+
+#### **상품 ID로 조회**
+* **Endpoint:** `GET /products/{id}`
+* **Request:** URL parameter `id: string`
+* **Response:**
+```typescript
+interface GetProductByIDResponse {
+  product: Product;
+}
+```
+
+#### **상품 추가**
+* **Endpoint:** `POST /products`
+* **Request:**
+```typescript
+interface PostProductsRequest {
+  name: string;
+  category: number; // int64
+  price: number; // int64
+  image_url: string;
+  description: string;
+  options_json: string; // JSON 문자열로 옵션 전달
+}
+```
+* **Response:**
+```typescript
+interface PostProductsResponse {
+  message: string;
+}
+```
 
 ### **AccountService**
 
-* **카카오 로그인 URL 요청:** GET /oauth/kakao/login  
-* **카카오 콜백 처리:** POST /oauth/kakao/callback  
-* **일반 로그인:** POST /login  
-* **회원가입:** POST /register
+#### **카카오 로그인 URL 요청**
+* **Endpoint:** `GET /oauth/kakao/login`
+* **Request:** 없음
+* **Response:**
+```typescript
+interface GetKakaoLoginURLResponse {
+  login_url: string;
+}
+```
+
+#### **카카오 콜백 처리**
+* **Endpoint:** `POST /oauth/kakao/callback`
+* **Request:**
+```typescript
+interface GetKakaoCallBackRequest {
+  code: string;
+}
+```
+* **Response:**
+```typescript
+interface GetKakaoCallBackResponse {
+  access_token: string;
+  refresh_token: string;
+  user_info_json: string;
+}
+```
+
+#### **일반 로그인**
+* **Endpoint:** `POST /login`
+* **Request:**
+```typescript
+interface LoginRequest {
+  email: string;
+  password: string;
+}
+```
+* **Response:**
+```typescript
+interface LoginResponse {
+  access_token: string;
+  refresh_token: string;
+}
+```
+
+#### **회원가입**
+* **Endpoint:** `POST /register`
+* **Request:**
+```typescript
+interface RegisterRequest {
+  email: string;
+  password: string;
+  // 필요하면 추가 필드 (예: 이름, 전화번호 등)
+}
+```
+* **Response:**
+```typescript
+interface RegisterResponse {
+  message: string; // ex) "Registration successful"
+  // 필요하면 user_id 같은 값 반환
+}
+```
 
 ### **OrderService**
 
-* **주문 생성:** POST /v1/order/insert  
-* **전체 주문 목록 조회:** GET /v1/order
+#### **주문 정보 (Order)**
+```typescript
+interface Order {
+  id: string;
+  user_id: string;
+  order_number: string;
+  status: string;
+  total_price: number; // int64
+  quantity: number; // int32
+  payment_method: string;
+  shipping_fee: number; // int32
+  shipping_address: string;
+  ordered_at: string;
+  paid_at: string;
+  memo: string;
+  items: OrderItem[];
+}
+
+interface OrderItem {
+  id: string;
+  order_id: string;
+  product_id: string;
+  product_name: string;
+  product_price: number; // int64
+  quantity: number; // int32
+}
+```
+
+#### **주문 생성**
+* **Endpoint:** `POST /v1/order/insert`
+* **Request:**
+```typescript
+interface InsertOrderRequest {
+  user_id: string;
+  order_number: string;
+  status: string;
+  total_price: number; // int64
+  quantity: number; // int32
+  payment_method: string;
+  shipping_fee: number; // int32
+  shipping_address: string;
+  paid_at: string;
+  memo: string;
+  items: InsertOrderItem[];
+}
+
+interface InsertOrderItem {
+  product_id: string;
+  product_name: string;
+  product_options: string;
+  product_price: number; // int64
+  quantity: number; // int32
+}
+```
+* **Response:**
+```typescript
+interface InsertOrderResponse {
+  id: string;
+}
+```
+
+#### **전체 주문 목록 조회**
+* **Endpoint:** `GET /v1/order`
+* **Request:** 없음
+* **Response:**
+```typescript
+interface GetAllOrdersResponse {
+  orders: Order[];
+}
+```
 
 ### **PaymentService (Kakao)**
 
-* **카카오 결제 준비:** POST /payment/kakao/ready  
-* **카카오 결제 승인:** POST /payment/kakao/approve  
-* **카카오 결제 취소:** POST /payment/kakao/cancel
+#### **카카오 결제 준비**
+* **Endpoint:** `POST /payment/kakao/ready`
+* **Request:**
+```typescript
+interface KakaoReadyRequest {
+  partner_order_id: string;
+  partner_user_id: string;
+  item_name: string;
+  quantity: number; // int32
+  total_amount: number; // int64
+  tax_free_amount: number; // int64
+}
+```
+* **Response:**
+```typescript
+interface KakaoReadyResponse {
+  tid: string;
+  next_redirect_app_url: string;
+  next_redirect_mobile_url: string;
+  next_redirect_pc_url: string;
+  android_app_scheme: string;
+  ios_app_scheme: string;
+}
+```
+
+#### **카카오 결제 승인**
+* **Endpoint:** `POST /payment/kakao/approve`
+* **Request:**
+```typescript
+interface KakaoApproveRequest {
+  tid: string;
+  partner_order_id: string;
+  partner_user_id: string;
+  pg_token: string;
+}
+```
+* **Response:**
+```typescript
+interface KakaoApproveResponse {
+  partner_order_id: string;
+}
+```
+
+#### **카카오 결제 취소**
+* **Endpoint:** `POST /payment/kakao/cancel`
+* **Request:**
+```typescript
+interface KakaoCancelRequest {
+  partner_order_id: string;
+  cancel_amount: string;
+  cancel_tax_free_amount: number; // int64
+  cancel_vat_amount: number; // int64
+  cancel_available_amount: number; // int64
+}
+```
+* **Response:**
+```typescript
+interface KakaoCancelResponse {
+  partner_order_id: string;
+}
+```
