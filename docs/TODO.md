@@ -154,25 +154,45 @@
 ### 13. 메인 페이지
 - [ ] `app/(main)/page.tsx`
 - [ ] 이미지 캐러셀 컴포넌트
+  - [ ] 6개 샘플 상품 이미지 슬라이드
+  - [ ] 가격대별 추천 (₩250,000~₩400,000)
 - [ ] 추천 상품 섹션
+  - [ ] 카테고리별 대표 상품 (금반지, 은반지, 금목걸이 등)
 - [ ] TanStack Query로 상품 데이터 fetching
 
 ### 14. 상품 목록 페이지
 - [ ] `app/(main)/products/page.tsx`
 - [ ] 카테고리 메뉴 컴포넌트
+  - [ ] 소재별 필터: 순금/금/은
+  - [ ] 종류별 필터: 목걸이/팔찌/반지/귀걸이
+  - [ ] 다중 선택 가능 (예: 금 + 반지)
 - [ ] 상품 카드 컴포넌트 (`features/product/ProductCard.tsx`)
   - [ ] Linear Card 스타일 적용
   - [ ] 호버 효과 (transition: 0.16s cubic-bezier)
+  - [ ] 가격 표시 (₩ 포맷팅)
+  - [ ] 카테고리 뱃지 표시
+  - [ ] 옵션 개수 표시 (예: "3가지 옵션")
 - [ ] 상품 목록 컴포넌트 (`features/product/ProductList.tsx`)
+  - [ ] 6개 샘플 상품 표시
 - [ ] 필터링 및 정렬 기능
+  - [ ] 가격순 정렬 (낮은순/높은순)
+  - [ ] 카테고리 조합 필터링
 - [ ] 페이지네이션 또는 무한 스크롤
 
 ### 15. 상품 상세 페이지
 - [ ] `app/(main)/products/[id]/page.tsx`
 - [ ] 상품 이미지 갤러리
 - [ ] 상품 정보 표시
+  - [ ] 가격 (₩ 포맷팅)
+  - [ ] 카테고리 표시 (소재 + 종류)
 - [ ] 옵션 선택 UI
+  - [ ] 금 제품: 함량 선택 (14k/18k), 색상 선택
+  - [ ] 반지: 사이즈 선택 (10호~20호)
+  - [ ] 조건부 옵션 표시 (카테고리별)
+  - [ ] 선택된 옵션에 따른 가격 변동 (있는 경우)
 - [ ] 장바구니 담기 기능
+  - [ ] 선택한 옵션 검증
+  - [ ] 수량 선택
 - [ ] 바로 구매 기능
 
 ### 16. 장바구니 페이지
@@ -314,6 +334,7 @@
 - **타입 정의**: 모든 API 응답 및 요청에 대한 TypeScript 인터페이스
 - **미들웨어**: Next.js Edge Runtime에서 JWT 검증 및 라우트 보호
 - **환경 설정**: 개발/프로덕션 환경 변수, Kakao OAuth 설정
+- **상품 데이터 구조**: PostgreSQL 기반 유연한 카테고리-옵션 시스템 구현 완료
 
 **🎯 사용 가능한 API 훅 (TanStack Query):**
 ```typescript
@@ -358,6 +379,45 @@ const { items, addItem, removeItem, updateQuantity, clearCart } = useCartStore()
 - `NEXT_PUBLIC_API_URL`: http://localhost:8080/api
 - `NEXT_PUBLIC_KAKAO_CLIENT_ID`: FalPk6WoA8wEAXWqLbGIF500T6Gl6Q5B
 
+**💎 상품 데이터 구조 (product_sample.md 참조):**
+```typescript
+// 카테고리 구조
+const categories = {
+  materials: [
+    { id: 1, name: '순금' },
+    { id: 2, name: '금' },
+    { id: 3, name: '은' }
+  ],
+  types: [
+    { id: 4, name: '목걸이' },
+    { id: 5, name: '팔찌' },
+    { id: 6, name: '반지' },
+    { id: 7, name: '귀걸이' }
+  ]
+};
+
+// 옵션 구조
+const options = {
+  함량: ['14k', '18k'],           // 금 제품만
+  사이즈: ['10호'...'20호'],       // 반지만
+  색상: ['yellow', 'pink', 'silver'] // 금 제품만
+};
+
+// 샘플 상품 (6개)
+// - 금반지 (모든 옵션): ₩300,000
+// - 금반지 (14k/18k만): ₩280,000  
+// - 은반지: ₩250,000
+// - 금팔찌: ₩350,000
+// - 금목걸이: ₩400,000
+// - 은귀걸이: ₩270,000
+```
+
+**🎯 상품 옵션 표시 규칙:**
+- **반지**: 사이즈 선택 필수
+- **금 제품**: 함량(14k/18k), 색상 선택 가능
+- **은 제품**: 기본 옵션만 제공
+- 상품별로 허용된 옵션만 표시 (DB category_options 매핑 참조)
+
 **⚠️ Phase 5 구현 시 주의사항:**
 1. 모든 페이지에서 `useAuth()` 훅을 통해 인증 상태 확인
 2. API 호출 시 TanStack Query 훅 사용 (직접 API 함수 호출 금지)
@@ -365,6 +425,8 @@ const { items, addItem, removeItem, updateQuantity, clearCart } = useCartStore()
 4. 장바구니 상태는 localStorage에 자동 저장됨
 5. JWT 토큰은 자동 갱신되므로 수동 관리 불필요
 6. 보호된 라우트는 middleware.ts에서 자동 처리
+7. 상품 옵션은 카테고리에 따라 동적으로 표시
+8. 가격은 BIGINT로 저장되므로 숫자 포맷팅 필요 (₩ 표시)
 
 **🧪 테스트 환경:**
 - Playwright E2E 테스트 설정 완료
@@ -373,6 +435,18 @@ const { items, addItem, removeItem, updateQuantity, clearCart } = useCartStore()
 
 **📋 다음 단계 (Phase 5):**
 메인 페이지부터 시작하여 상품 목록, 상품 상세, 장바구니, 주문 페이지 순으로 구현
+
+**🔑 상품 UUID 빠른 참조:**
+```typescript
+const PRODUCT_IDS = {
+  GOLD_RING_ALL: '00000000-0000-0000-0000-000000000001',    // ₩300,000
+  GOLD_RING_LIMITED: '00000000-0000-0000-0000-000000000002', // ₩280,000
+  SILVER_RING: '00000000-0000-0000-0000-000000000003',       // ₩250,000
+  GOLD_BRACELET: '00000000-0000-0000-0000-000000000004',     // ₩350,000
+  GOLD_NECKLACE: '00000000-0000-0000-0000-000000000005',     // ₩400,000
+  SILVER_EARRINGS: '00000000-0000-0000-0000-000000000006'    // ₩270,000
+};
+```
 
 ## 🎨 Linear Design System 핵심 원칙
 - **Focus**: Relentless focus on core features
