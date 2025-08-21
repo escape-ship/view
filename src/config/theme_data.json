@@ -1,0 +1,243 @@
+{
+  "theme": {
+    "name": "Linear Design System",
+    "version": "1.0.0",
+    "description": "Linear.app의 디자인 시스템을 기반으로 한 테마 데이터"
+  },
+  "colors": {
+    "primary": {
+      "main": "#5E6AD2",
+      "light": "#94A3FF",
+      "dark": "#4C59BD"
+    },
+    "neutral": {
+      "50": "#F7F8F8",
+      "100": "#E6E6E6",
+      "200": "#D0D2D8",
+      "300": "#8A8F98",
+      "400": "#626269",
+      "500": "#282828",
+      "600": "#1E1F16",
+      "700": "#141516",
+      "800": "#0F1011",
+      "900": "#08090A"
+    },
+    "background": {
+      "primary": "#F7F8F8",
+      "secondary": "#FFFFFF",
+      "tertiary": "rgba(40, 40, 40, 0.2)",
+      "dark": "#0F1011",
+      "overlay": "rgba(10, 10, 10, 0.8)"
+    },
+    "text": {
+      "primary": "#08090A",
+      "secondary": "#626269",
+      "tertiary": "#8A8F98",
+      "inverse": "#F7F8F8",
+      "muted": "rgba(255, 255, 255, 0.7)"
+    },
+    "status": {
+      "success": "#68CC58",
+      "warning": "#F2994A",
+      "error": "#C52828",
+      "info": "#02B8CC",
+      "progress": "#67719D"
+    },
+    "accent": {
+      "purple": "#B59AFF",
+      "blue": "#5E6AD2",
+      "green": "#2C901C",
+      "yellow": "#DEB549",
+      "orange": "#F2994A"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "primary": "\"Inter Variable\", \"SF Pro Display\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif"
+    },
+    "fontSize": {
+      "xs": "10px",
+      "sm": "13px",
+      "base": "14px",
+      "md": "15px",
+      "lg": "16px",
+      "xl": "17px",
+      "2xl": "21px",
+      "3xl": "24px",
+      "4xl": "40px",
+      "5xl": "56px"
+    },
+    "fontWeight": {
+      "normal": 400,
+      "medium": 510,
+      "semibold": 538
+    },
+    "lineHeight": {
+      "tight": "19.5px",
+      "normal": "24px",
+      "relaxed": "32px",
+      "loose": "44px"
+    }
+  },
+  "spacing": {
+    "xs": "2px",
+    "sm": "4px",
+    "base": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "20px",
+    "2xl": "24px",
+    "3xl": "32px",
+    "4xl": "48px",
+    "5xl": "56px",
+    "6xl": "64px",
+    "7xl": "72px",
+    "8xl": "96px",
+    "9xl": "160px"
+  },
+  "borderRadius": {
+    "none": "0px",
+    "xs": "1px",
+    "sm": "4px",
+    "base": "6px",
+    "md": "8px",
+    "lg": "10px",
+    "xl": "16px",
+    "2xl": "18px",
+    "3xl": "30px",
+    "full": "9999px",
+    "circle": "50%"
+  },
+  "shadows": {
+    "sm": "rgba(0, 0, 0, 0.04) 0px 3px 2px 0px, rgba(0, 0, 0, 0.07) 0px 1px 1px 0px, rgba(0, 0, 0, 0.08) 0px 0px 1px 0px",
+    "md": "rgba(0, 0, 0, 0.2) 0px 4px 24px 0px",
+    "lg": "rgba(0, 0, 0, 0.35) 0px 7px 32px 0px",
+    "inset": "rgba(255, 255, 255, 0.04) 0px 1.503px 5.261px 0px inset, rgba(255, 255, 255, 0.1) 0px -0.752px 0.752px 0px inset",
+    "complex": "rgba(255, 255, 255, 0.14) 0px -2.75px 4.75px 0px inset, rgba(255, 255, 255, 0.1) 0px -0.752px 0.752px 0px inset, rgba(0, 0, 0, 0.5) 0px 54px 73px 3px"
+  },
+  "components": {
+    "button": {
+      "primary": {
+        "backgroundColor": "#141516",
+        "color": "#F7F8F8",
+        "borderRadius": "30px",
+        "padding": "16px 24px",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "border": "none"
+      },
+      "secondary": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "#8A8F98",
+        "borderRadius": "8px",
+        "padding": "0px 12px",
+        "fontSize": "13px",
+        "fontWeight": 510,
+        "border": "none"
+      },
+      "outline": {
+        "backgroundColor": "#28282C",
+        "color": "#F7F8F8",
+        "borderRadius": "9999px",
+        "padding": "0px 16px",
+        "fontSize": "15px",
+        "fontWeight": 510,
+        "border": "1px solid #3E3E44"
+      }
+    },
+    "card": {
+      "default": {
+        "backgroundColor": "rgba(40, 40, 40, 0.2)",
+        "borderRadius": "16px",
+        "padding": "16px",
+        "border": "1px solid rgba(255, 255, 255, 0.1)",
+        "boxShadow": "none"
+      },
+      "elevated": {
+        "backgroundColor": "#0F1011",
+        "borderRadius": "30px",
+        "padding": "32px 24px",
+        "border": "none",
+        "boxShadow": "none"
+      }
+    }
+  },
+  "grid": {
+    "columns": 12,
+    "gutter": "32px",
+    "maxWidth": "1200px",
+    "breakpoints": {
+      "xs": "0px",
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px",
+      "xl": "1280px",
+      "2xl": "1536px"
+    }
+  },
+  "animations": {
+    "transitions": {
+      "fast": "0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+      "normal": "0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+      "slow": "0.24s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+      "verySlow": "0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+    },
+    "easings": {
+      "easeOut": "ease-out",
+      "easeInOut": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+      "spring": "cubic-bezier(0.85, 0, 0.15, 1)"
+    }
+  },
+  "zIndex": {
+    "background": -1,
+    "base": 1,
+    "tooltip": 50,
+    "modal": 100,
+    "notification": 5000,
+    "maximum": 10000
+  },
+  "layout": {
+    "container": {
+      "maxWidth": "1200px",
+      "padding": "0 24px"
+    },
+    "section": {
+      "paddingY": "96px"
+    },
+    "navigation": {
+      "height": "72px",
+      "padding": "0 32px"
+    }
+  },
+  "breakpoints": {
+    "mobile": "(max-width: 640px)",
+    "tablet": "(max-width: 768px)",
+    "desktop": "(min-width: 769px)",
+    "large": "(min-width: 1025px)",
+    "xl": "(min-width: 1281px)",
+    "hover": "(any-hover: hover)",
+    "reducedMotion": "(prefers-reduced-motion: reduce)"
+  },
+  "designPrinciples": {
+    "focus": "relentless focus",
+    "execution": "fast execution",
+    "craft": "commitment to quality of craft",
+    "simplicity": "purposeful minimalism",
+    "performance": "obsessive focus on speed"
+  },
+  "meta": {
+    "extractedFrom": "https://linear.app/",
+    "extractedAt": "2025-08-11T12:24:11.371Z",
+    "framework": "Modern CSS-in-JS",
+    "designSystem": "Linear Design System",
+    "notes": [
+      "Dark theme optimized design",
+      "12-column grid system with 32px gutters",
+      "Consistent 8px spacing scale",
+      "Inter Variable as primary typeface",
+      "Smooth transitions with eased curves",
+      "Minimalist component design",
+      "High contrast for accessibility"
+    ]
+  }
+}
