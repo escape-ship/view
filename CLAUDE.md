@@ -188,3 +188,5 @@ The project uses comprehensive E2E testing with Playwright:
 - Zustand for efficient cart state management with selective subscriptions
 - Inter font with optimized weight loading (400, 500, 600)
 - please use context7 when doing tasks about tailwind, zustand, axios, shadcn/ui, next.js, tanstack, react context API.
+- please check @docs/UI_기획서.md and @docs/UI_프로젝트_구조.md before your job.
+- This front-end project is for a gold and silver shop (rings, earrings, necklaces, bracelets) shopping mall.
